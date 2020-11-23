@@ -3,39 +3,30 @@ import React, { Component } from 'react';
 class TabSelector extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activeId: 'home'
-    };
-    this.handleChangeTab = this.handleChangeTab.bind(this);
-  }
-
-  handleChangeTab(event) {
-    const buttonId = event.target.id;
-    this.setState({ activeId: buttonId });
   }
 
   render() {
-    const { activeId } = this.state;
+    //console.log(this.props)
     return (
       <div className="TabSelector">
         <button
           id="home"
-          onClick={this.handleChangeTab}
-          className={activeId === 'home' ? 'active' : ''}
+          onClick={(event) => {this.props.onChangeTab(event)}}
+          className={this.props.currentTab === 'home' ? 'active' : ''}
         >
           Home
         </button>
         <button
           id="about"
-          onClick={this.handleChangeTab}
-          className={activeId === 'about' ? 'active' : ''}
+          onClick={(event) => this.props.onChangeTab(event)}
+          className={this.props.currentTab === 'about' ? 'active' : ''}
         >
           About
         </button>
         <button
           id="contact"
-          onClick={this.handleChangeTab}
-          className={activeId === 'contact' ? 'active' : ''}
+          onClick={(event) => this.props.onChangeTab(event)}
+          className={this.props.currentTab === 'contact' ? 'active' : ''}
         >
           Contact
         </button>
